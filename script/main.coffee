@@ -32,6 +32,7 @@ load_text = ->
 
 register_keypresses = (text_server, front_end) ->
   $(window).keypress( (event) ->
+    is_correct = false
     current_letter = text_server.current_letter()
 
     entered_letter = String.fromCharCode(event.charCode)
@@ -42,11 +43,13 @@ register_keypresses = (text_server, front_end) ->
       when 116 then return
       when 27 then return
       else
-        if entered_letter == current_letter
-          front_end.set_next_letter( text_server )
-          $('#current_letter').removeClass('error')
-        else
-          $('#current_letter').addClass('error')
+        is_correct = entered_letter == current_letter
+
+    if is_correct
+      front_end.set_next_letter( text_server )
+      $('#current_letter').removeClass('error')
+    else
+      $('#current_letter').addClass('error')
   )
 
 class FrontEnd
@@ -95,6 +98,8 @@ class FrontEnd
 
     if letter == ' '
       visible_letter = 'spatie'
+    else if letter == "\n"
+      visible_letter = 'enter'
 
     if visible_letter.length > 1
       letter_div.addClass('small')
