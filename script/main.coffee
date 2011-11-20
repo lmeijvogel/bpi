@@ -1,11 +1,10 @@
-UPCOMING_OFFSET = 100
-
 jQuery ->
   text = load_text()
 
   if text?
+    upcoming_offset = 300
     text_server = new TextServer(text)
-    front_end = new FrontEnd()
+    front_end = new FrontEnd( upcoming_offset )
 
     front_end.initialize_letters(text_server)
     front_end.position_letters()
@@ -36,31 +35,39 @@ register_keypresses = (text_server, front_end) ->
     current_letter = text_server.current_letter()
 
     entered_letter = String.fromCharCode(event.charCode)
+    pressed_key = event.keyCode
 
-    if entered_letter == current_letter
-      front_end.set_next_letter( text_server )
-      $('#current_letter').removeClass('error')
-    else
-      $('#current_letter').addClass('error')
+    switch pressed_key
+      when 13 then is_correct = current_letter == "\n"
+      when 116 then return
+      when 27 then return
+      else
+        if entered_letter == current_letter
+          front_end.set_next_letter( text_server )
+          $('#current_letter').removeClass('error')
+        else
+          $('#current_letter').addClass('error')
   )
 
 class FrontEnd
-  constructor: ->
+  constructor: (upcoming_offset) ->
     this.animating = false
     this.current_letter = $('#current_letter')
     this.upcoming_letter = $('#upcoming_letter')
 
-  position_letters: ->
+    this.upcoming_offset = upcoming_offset
 
+  position_letters: ->
     width = $(window).width()
     height = $(window).height()
 
     x = (width - this.current_letter.width()) / 2
     y = (height - this.current_letter.height()) / 2
+
     this.current_letter.css('left', x)
     this.current_letter.css('top', y)
 
-    this.upcoming_letter.css('left', x + UPCOMING_OFFSET)
+    this.upcoming_letter.css('left', x + this.upcoming_offset)
     this.upcoming_letter.css('top', y)
 
     this.current_letter.show()
@@ -102,7 +109,7 @@ class FrontEnd
     upcoming_letter_div.css( 'display', 'block' )
     upcoming_letter_div.show()
     upcoming_letter_div.animate
-      left: '-='+ UPCOMING_OFFSET
+      left: '-='+ this.upcoming_offset
       200
       =>
         this.position_letters()
