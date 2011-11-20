@@ -1,0 +1,30 @@
+html {
+    //background: url(../gfx/background.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+    .letter {
+      background-color: white;
+      color: black;
+
+      width: 50px;
+      height: 50px;
+
+      padding: 5px 5px 5px 5px;
+      position: absolute;
+
+      text-align: center;
+      vertical-align: middle;
+      font-size: 20pt;
+
+      &.error {
+        background-color: red;
+      }
+
+      &.small {
+        font-size: 10pt;
+      }
+    }
+}
