@@ -74,26 +74,23 @@ class FrontEnd
     this.upcoming_letter.element.hide()
 
   initialize_letters: (text_server) ->
-    this.set_letter( this.current_letter, text_server.current_letter() )
+    this.current_letter.set( text_server.current_letter() )
 
   set_next_letter: (text_server) ->
     this.current_letter.element.removeClass('error')
 
     if this.animating
-      this.set_letter( this.current_letter, text_server.current_letter() )
+      this.current_letter.set( text_server.current_letter() )
       this.position_letters
 
     next_letter = text_server.next_letter()
-    this.set_letter( this.upcoming_letter, next_letter )
+    this.upcoming_letter.set( next_letter )
 
     this.current_letter.element.fadeOut( 'fast', =>
-      this.set_letter( this.current_letter, next_letter )
+      this.current_letter.set( next_letter )
     )
 
     this.slide_in_upcoming(this.upcoming_letter, this.current_letter)
-
-  set_letter: (letter, new_letter) ->
-    letter.set(new_letter)
 
   slide_in_upcoming: (upcoming_letter, current_letter) ->
     this.animating = true
