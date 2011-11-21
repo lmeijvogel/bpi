@@ -46,7 +46,7 @@ register_keypresses = (text_server, front_end) ->
         is_correct = entered_letter == current_letter
 
     if is_correct
-      front_end.set_next_letter( text_server )
+      front_end.letter_typed( text_server )
     else
       front_end.set_error()
   )
@@ -70,7 +70,7 @@ class FrontEnd
   initialize_letters: (text_server) ->
     this.current_letter.set( text_server.current_letter() )
 
-  set_next_letter: (text_server) ->
+  letter_typed: (text_server) ->
     if this.animating
       this.current_letter.set( text_server.current_letter() )
       this.position_letters
