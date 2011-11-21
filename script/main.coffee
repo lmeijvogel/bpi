@@ -90,7 +90,7 @@ class FrontEnd
       this.set_letter( this.current_letter.element, next_letter )
     )
 
-    this.slide_in_upcoming(this.upcoming_letter.element, this.current_letter.element)
+    this.slide_in_upcoming(this.upcoming_letter, this.current_letter)
 
   set_letter: (letter_div, letter) ->
     visible_letter = letter
@@ -107,11 +107,11 @@ class FrontEnd
 
     letter_div.text(visible_letter)
 
-  slide_in_upcoming: (upcoming_letter_div, current_letter_div) ->
+  slide_in_upcoming: (upcoming_letter, current_letter) ->
     this.animating = true
 
-    upcoming_letter_div.show()
-    upcoming_letter_div.animate
+    upcoming_letter.element.show()
+    upcoming_letter.element.animate
       left: '-='+ this.upcoming_offset
       200
       =>
