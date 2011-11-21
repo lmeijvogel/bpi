@@ -110,7 +110,6 @@ class FrontEnd
   slide_in_upcoming: (upcoming_letter_div, current_letter_div) ->
     this.animating = true
 
-    upcoming_letter_div.css( 'display', 'block' )
     upcoming_letter_div.show()
     upcoming_letter_div.animate
       left: '-='+ this.upcoming_offset
