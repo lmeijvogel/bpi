@@ -55,20 +55,14 @@ class FrontEnd
   constructor: (upcoming_offset) ->
     this.animating = false
     this.current_letter = new CurrentLetter($('#current_letter'))
-    this.upcoming_letter = new Letter($('#upcoming_letter'))
-
-    this.upcoming_offset = upcoming_offset
+    this.upcoming_letter = new UpcomingLetter($('#upcoming_letter'), upcoming_offset)
 
   position_letters: ->
     width = $(window).width()
     height = $(window).height()
 
-    x = (width - this.current_letter.element.width()) / 2
-    y = (height - this.current_letter.element.height()) / 2
-
     this.current_letter.position( width, height )
-
-    this.upcoming_letter.set_position(x + this.upcoming_offset, y)
+    this.upcoming_letter.position( width, height )
 
     this.current_letter.show()
     this.upcoming_letter.hide()
@@ -95,7 +89,7 @@ class FrontEnd
 
     upcoming_letter.show()
     upcoming_letter.element.animate
-      left: '-='+ this.upcoming_offset
+      left: '-='+ this.upcoming_letter.upcoming_offset
       200
       =>
         this.position_letters()
@@ -142,6 +136,17 @@ class CurrentLetter extends Letter
     x = (screen_width - this.element.width()) / 2
     y = (screen_height - this.element.height()) / 2
     this.set_position(x, y)
+
+class UpcomingLetter extends Letter
+  constructor: (element, upcoming_offset) ->
+    super(element)
+    this.upcoming_offset = upcoming_offset
+
+  position: (screen_width, screen_height) ->
+    x = (screen_width - this.element.width()) / 2
+    y = (screen_height - this.element.height()) / 2
+
+    this.set_position(x + this.upcoming_offset, y)
 
 class TextServer
   constructor: (loaded_text) ->
