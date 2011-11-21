@@ -54,7 +54,7 @@ register_keypresses = (text_server, front_end) ->
 class FrontEnd
   constructor: (upcoming_offset) ->
     this.animating = false
-    this.current_letter = new Letter($('#current_letter'))
+    this.current_letter = new CurrentLetter($('#current_letter'))
     this.upcoming_letter = new Letter($('#upcoming_letter'))
 
     this.upcoming_offset = upcoming_offset
@@ -128,14 +128,15 @@ class Letter
     this.element.removeClass('error')
     this.element.text(visible_letter)
 
-  set_error: ->
-    this.element.addClass('error')
-
   show: ->
     this.element.show()
 
   hide: ->
     this.element.hide()
+
+class CurrentLetter extends Letter
+  set_error: ->
+    this.element.addClass('error')
 
 class TextServer
   constructor: (loaded_text) ->
