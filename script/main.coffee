@@ -48,7 +48,7 @@ register_keypresses = (text_server, front_end) ->
     if is_correct
       front_end.set_next_letter( text_server )
     else
-      $('#current_letter').addClass('error')
+      front_end.set_error()
   )
 
 class FrontEnd
@@ -77,8 +77,6 @@ class FrontEnd
     this.current_letter.set( text_server.current_letter() )
 
   set_next_letter: (text_server) ->
-    this.current_letter.element.removeClass('error')
-
     if this.animating
       this.current_letter.set( text_server.current_letter() )
       this.position_letters
@@ -103,6 +101,9 @@ class FrontEnd
         this.position_letters()
         this.animating = false
 
+  set_error: ->
+    this.current_letter.set_error()
+
 class Letter
   constructor: (element) ->
     this.element = element
@@ -124,7 +125,11 @@ class Letter
     else
       this.element.removeClass('small')
 
+    this.element.removeClass('error')
     this.element.text(visible_letter)
+
+  set_error: ->
+    this.element.addClass('error')
 
   show: ->
     this.element.show()
