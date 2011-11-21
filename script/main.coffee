@@ -93,19 +93,7 @@ class FrontEnd
     this.slide_in_upcoming(this.upcoming_letter, this.current_letter)
 
   set_letter: (letter, new_letter) ->
-    visible_letter = new_letter
-
-    if new_letter == ' '
-      visible_letter = 'spatie'
-    else if new_letter == "\n"
-      visible_letter = 'enter'
-
-    if visible_letter.length > 1
-      letter.element.addClass('small')
-    else
-      letter.element.removeClass('small')
-
-    letter.element.text(visible_letter)
+    letter.set(new_letter)
 
   slide_in_upcoming: (upcoming_letter, current_letter) ->
     this.animating = true
@@ -125,6 +113,21 @@ class Letter
   set_position: (x, y) ->
     this.element.css('left', x)
     this.element.css('top', y)
+
+  set: (letter) ->
+    visible_letter = letter
+
+    if letter == ' '
+      visible_letter = 'spatie'
+    else if letter == "\n"
+      visible_letter = 'enter'
+
+    if visible_letter.length > 1
+      this.element.addClass('small')
+    else
+      this.element.removeClass('small')
+
+    this.element.text(visible_letter)
 
 class TextServer
   constructor: (loaded_text) ->
