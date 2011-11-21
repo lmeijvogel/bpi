@@ -70,8 +70,8 @@ class FrontEnd
 
     this.upcoming_letter.set_position(x + this.upcoming_offset, y)
 
-    this.current_letter.element.show()
-    this.upcoming_letter.element.hide()
+    this.current_letter.show()
+    this.upcoming_letter.hide()
 
   initialize_letters: (text_server) ->
     this.current_letter.set( text_server.current_letter() )
@@ -95,7 +95,7 @@ class FrontEnd
   slide_in_upcoming: (upcoming_letter, current_letter) ->
     this.animating = true
 
-    upcoming_letter.element.show()
+    upcoming_letter.show()
     upcoming_letter.element.animate
       left: '-='+ this.upcoming_offset
       200
@@ -125,6 +125,12 @@ class Letter
       this.element.removeClass('small')
 
     this.element.text(visible_letter)
+
+  show: ->
+    this.element.show()
+
+  hide: ->
+    this.element.hide()
 
 class TextServer
   constructor: (loaded_text) ->
