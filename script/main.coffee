@@ -66,11 +66,9 @@ class FrontEnd
     x = (width - this.current_letter.element.width()) / 2
     y = (height - this.current_letter.element.height()) / 2
 
-    this.current_letter.element.css('left', x)
-    this.current_letter.element.css('top', y)
+    this.current_letter.set_position(x, y)
 
-    this.upcoming_letter.element.css('left', x + this.upcoming_offset)
-    this.upcoming_letter.element.css('top', y)
+    this.upcoming_letter.set_position(x + this.upcoming_offset, y)
 
     this.current_letter.element.show()
     this.upcoming_letter.element.hide()
@@ -124,6 +122,10 @@ class FrontEnd
 class Letter
   constructor: (element) ->
     this.element = element
+
+  set_position: (x, y) ->
+    this.element.css('left', x)
+    this.element.css('top', y)
 
 class TextServer
   constructor: (loaded_text) ->
