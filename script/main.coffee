@@ -54,8 +54,8 @@ register_keypresses = (text_server, front_end) ->
 class FrontEnd
   constructor: (upcoming_offset) ->
     this.animating = false
-    this.current_letter = $('#current_letter')
-    this.upcoming_letter = $('#upcoming_letter')
+    this.current_letter = new Letter($('#current_letter'))
+    this.upcoming_letter = new Letter($('#upcoming_letter'))
 
     this.upcoming_offset = upcoming_offset
 
@@ -63,36 +63,36 @@ class FrontEnd
     width = $(window).width()
     height = $(window).height()
 
-    x = (width - this.current_letter.width()) / 2
-    y = (height - this.current_letter.height()) / 2
+    x = (width - this.current_letter.element.width()) / 2
+    y = (height - this.current_letter.element.height()) / 2
 
-    this.current_letter.css('left', x)
-    this.current_letter.css('top', y)
+    this.current_letter.element.css('left', x)
+    this.current_letter.element.css('top', y)
 
-    this.upcoming_letter.css('left', x + this.upcoming_offset)
-    this.upcoming_letter.css('top', y)
+    this.upcoming_letter.element.css('left', x + this.upcoming_offset)
+    this.upcoming_letter.element.css('top', y)
 
-    this.current_letter.show()
-    this.upcoming_letter.hide()
+    this.current_letter.element.show()
+    this.upcoming_letter.element.hide()
 
   initialize_letters: (text_server) ->
-    this.set_letter( this.current_letter, text_server.current_letter() )
+    this.set_letter( this.current_letter.element, text_server.current_letter() )
 
   set_next_letter: (text_server) ->
     this.current_letter.element.removeClass('error')
 
     if this.animating
-      this.set_letter( this.current_letter, text_server.current_letter() )
+      this.set_letter( this.current_letter.element, text_server.current_letter() )
       this.position_letters
 
     next_letter = text_server.next_letter()
-    this.set_letter( this.upcoming_letter, next_letter )
+    this.set_letter( this.upcoming_letter.element, next_letter )
 
-    this.current_letter.fadeOut( 'fast', =>
-      this.set_letter( this.current_letter, next_letter )
+    this.current_letter.element.fadeOut( 'fast', =>
+      this.set_letter( this.current_letter.element, next_letter )
     )
 
-    this.slide_in_upcoming(this.upcoming_letter, this.current_letter)
+    this.slide_in_upcoming(this.upcoming_letter.element, this.current_letter.element)
 
   set_letter: (letter_div, letter) ->
     visible_letter = letter
@@ -120,6 +120,10 @@ class FrontEnd
       =>
         this.position_letters()
         this.animating = false
+
+class Letter
+  constructor: (element) ->
+    this.element = element
 
 class TextServer
   constructor: (loaded_text) ->
