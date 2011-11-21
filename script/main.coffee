@@ -66,7 +66,7 @@ class FrontEnd
     x = (width - this.current_letter.element.width()) / 2
     y = (height - this.current_letter.element.height()) / 2
 
-    this.current_letter.set_position(x, y)
+    this.current_letter.position( width, height )
 
     this.upcoming_letter.set_position(x + this.upcoming_offset, y)
 
@@ -137,6 +137,11 @@ class Letter
 class CurrentLetter extends Letter
   set_error: ->
     this.element.addClass('error')
+
+  position: (screen_width, screen_height) ->
+    x = (screen_width - this.element.width()) / 2
+    y = (screen_height - this.element.height()) / 2
+    this.set_position(x, y)
 
 class TextServer
   constructor: (loaded_text) ->
