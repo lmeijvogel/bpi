@@ -111,20 +111,20 @@ class Letter
     this.element.css('top', y)
 
   set: (letter) ->
-    visible_letter = letter
+    displayed_letter = letter
 
     if letter == ' '
-      visible_letter = 'spatie'
+      displayed_letter = 'spatie'
     else if letter == "\n"
-      visible_letter = 'enter'
+      displayed_letter = 'enter'
 
-    if visible_letter.length > 1
+    if displayed_letter.length > 1
       this.element.addClass('small')
     else
       this.element.removeClass('small')
 
     this.element.removeClass('error')
-    this.element.text(visible_letter)
+    this.element.text(displayed_letter)
 
   show: ->
     this.element.show()
