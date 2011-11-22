@@ -32,24 +32,7 @@ load_text = ->
 
 register_keypresses = (text_server, front_end) ->
   $(window).keypress( (event) ->
-    is_correct = false
-    current_letter = text_server.current_letter()
-
-    entered_letter = String.fromCharCode(event.charCode)
-    pressed_key = event.keyCode
-
-    switch pressed_key
-      when 13 then is_correct = current_letter == "\n"
-      when 192 then return # alt-tab
-      when 116 then return # F5
-      when 27 then return # escape
-      else
-        is_correct = entered_letter == current_letter
-
-    if is_correct
-      front_end.letter_typed()
-    else
-      front_end.set_error()
+    front_end.key_pressed( event.charCode, event.keyCode )
   )
 
 class FrontEnd
@@ -97,6 +80,26 @@ class FrontEnd
       =>
         this.position_letters()
         this.animating = false
+
+  key_pressed: ( charCode, keyCode ) ->
+    is_correct = false
+    current_letter = this.text_server.current_letter()
+
+    entered_letter = String.fromCharCode(charCode)
+    pressed_key = keyCode
+
+    switch pressed_key
+      when 13 then is_correct = current_letter == "\n"
+      when 192 then return # alt-tab
+      when 116 then return # F5
+      when 27 then return # escape
+      else
+        is_correct = entered_letter == current_letter
+
+    if is_correct
+      this.letter_typed( this.text_server )
+    else
+      this.set_error()
 
   set_error: ->
     this.current_letter.set_error()
