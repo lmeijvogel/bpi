@@ -40,8 +40,9 @@ register_keypresses = (text_server, front_end) ->
 
     switch pressed_key
       when 13 then is_correct = current_letter == "\n"
-      when 116 then return
-      when 27 then return
+      when 192 then return # alt-tab
+      when 116 then return # F5
+      when 27 then return # escape
       else
         is_correct = entered_letter == current_letter
 
