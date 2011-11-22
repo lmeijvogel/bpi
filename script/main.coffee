@@ -39,6 +39,8 @@ class FrontEnd
   constructor: (text_server, upcoming_offset) ->
     this.animating = false
 
+    this.game_completed = false
+
     this.text_server = text_server
     this.current_letter = new CurrentLetter($('#current_letter'))
     this.upcoming_letter = new UpcomingLetter($('#upcoming_letter'), upcoming_offset)
@@ -57,18 +59,26 @@ class FrontEnd
     this.current_letter.set( this.text_server.current_letter() )
 
   letter_typed: ->
-    if this.animating
-      this.current_letter.set( this.text_server.current_letter() )
-      this.position_letters
+    if this.text_server.has_more_letters()
+      if this.animating
+        this.current_letter.set( this.text_server.current_letter() )
+        this.position_letters
 
-    next_letter = this.text_server.next_letter()
-    this.upcoming_letter.set( next_letter )
+      next_letter = this.text_server.next_letter()
+      this.upcoming_letter.set( next_letter )
 
-    this.current_letter.element.fadeOut( 'fast', =>
-      this.current_letter.set( next_letter )
-    )
+      this.current_letter.element.fadeOut( 'fast', =>
+        this.current_letter.set( next_letter )
+      )
 
-    this.slide_in_upcoming(this.upcoming_letter, this.current_letter)
+      this.slide_in_upcoming(this.upcoming_letter, this.current_letter)
+    else
+      this.finish_game()
+
+  finish_game: ->
+    this.game_completed = true
+    $('#letters').hide()
+    $('#congratulations').show()
 
   slide_in_upcoming: (upcoming_letter, current_letter) ->
     this.animating = true
@@ -82,6 +92,8 @@ class FrontEnd
         this.animating = false
 
   key_pressed: ( charCode, keyCode ) ->
+    return if this.game_completed
+
     is_correct = false
     current_letter = this.text_server.current_letter()
 
@@ -159,6 +171,9 @@ class TextServer
 
   current_letter: ->
     this.loaded_text[this.current_index]
+
+  has_more_letters: ->
+    this.current_index < this.loaded_text.length - 1
 
   next_letter: ->
     this.current_index++
