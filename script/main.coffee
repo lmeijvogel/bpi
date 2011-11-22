@@ -4,9 +4,9 @@ jQuery ->
   if text?
     upcoming_offset = 300
     text_server = new TextServer(text)
-    front_end = new FrontEnd( upcoming_offset )
+    front_end = new FrontEnd( text_server, upcoming_offset )
 
-    front_end.initialize_letters(text_server)
+    front_end.initialize_letters()
     front_end.position_letters()
 
     register_keypresses(text_server, front_end)
@@ -47,14 +47,16 @@ register_keypresses = (text_server, front_end) ->
         is_correct = entered_letter == current_letter
 
     if is_correct
-      front_end.letter_typed( text_server )
+      front_end.letter_typed()
     else
       front_end.set_error()
   )
 
 class FrontEnd
-  constructor: (upcoming_offset) ->
+  constructor: (text_server, upcoming_offset) ->
     this.animating = false
+
+    this.text_server = text_server
     this.current_letter = new CurrentLetter($('#current_letter'))
     this.upcoming_letter = new UpcomingLetter($('#upcoming_letter'), upcoming_offset)
 
@@ -68,15 +70,15 @@ class FrontEnd
     this.current_letter.show()
     this.upcoming_letter.hide()
 
-  initialize_letters: (text_server) ->
-    this.current_letter.set( text_server.current_letter() )
+  initialize_letters: ->
+    this.current_letter.set( this.text_server.current_letter() )
 
-  letter_typed: (text_server) ->
+  letter_typed: ->
     if this.animating
-      this.current_letter.set( text_server.current_letter() )
+      this.current_letter.set( this.text_server.current_letter() )
       this.position_letters
 
-    next_letter = text_server.next_letter()
+    next_letter = this.text_server.next_letter()
     this.upcoming_letter.set( next_letter )
 
     this.current_letter.element.fadeOut( 'fast', =>
