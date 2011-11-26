@@ -4,7 +4,13 @@ jQuery ->
   if text?
     upcoming_offset = 300
     text_server = new TextServer(text)
-    front_end = new FrontEnd( text_server, upcoming_offset )
+
+    screen_dimensions = [$(window).width(), $(window).height()]
+
+    current_letter = new CurrentLetter($('#current_letter'), screen_dimensions)
+    upcoming_letter = new UpcomingLetter($('#upcoming_letter'), screen_dimensions, upcoming_offset)
+
+    front_end = new FrontEnd( text_server, current_letter, upcoming_letter )
 
     front_end.initialize_letters()
     front_end.position_letters()

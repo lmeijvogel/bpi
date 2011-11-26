@@ -1,14 +1,13 @@
 class this.FrontEnd
-  constructor: (text_server, upcoming_offset) ->
+  constructor: (text_server, current_letter, upcoming_letter) ->
     this.animating = false
-
-    screen_dimensions = [$(window).width(), $(window).height()]
 
     this.game_completed = false
 
     this.text_server = text_server
-    this.current_letter = new CurrentLetter($('#current_letter'), screen_dimensions)
-    this.upcoming_letter = new UpcomingLetter($('#upcoming_letter'), screen_dimensions, upcoming_offset)
+
+    this.current_letter = current_letter
+    this.upcoming_letter = upcoming_letter
 
   position_letters: ->
     this.current_letter.position()
