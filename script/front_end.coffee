@@ -25,10 +25,13 @@ class this.FrontEnd
         this.position_letters()
 
       next_letter = this.text_server.next_letter()
-      this.upcoming_letter.set( next_letter )
 
+      this.animating = true
       this.current_letter.next_letter( next_letter )
-      this.slide_in_upcoming(this.upcoming_letter, this.current_letter)
+      this.upcoming_letter.next_letter( next_letter, =>
+        this.position_letters()
+        this.animating = false
+      )
     else
       this.finish_game()
 
@@ -38,13 +41,6 @@ class this.FrontEnd
     this.current_letter.hide()
 
     $('#congratulations').show()
-
-  slide_in_upcoming: (upcoming_letter, current_letter) ->
-    this.animating = true
-
-    upcoming_letter.slide_in =>
-      this.position_letters()
-      this.animating = false
 
   key_pressed: ( charCode, keyCode ) ->
     return if this.game_completed

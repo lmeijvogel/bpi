@@ -60,6 +60,10 @@ class this.UpcomingLetter extends Letter
     this.set_position(x + this.upcoming_offset, y)
     this.hide()
 
+  next_letter: (letter, callback) ->
+    this.set(letter)
+    this.slide_in(callback)
+
   slide_in: (callback) ->
     this.show()
     this.element.animate
