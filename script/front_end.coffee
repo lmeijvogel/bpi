@@ -2,18 +2,18 @@ class this.FrontEnd
   constructor: (text_server, upcoming_offset) ->
     this.animating = false
 
-    this.game_completed = false
-
-    this.text_server = text_server
-    this.current_letter = new CurrentLetter($('#current_letter'))
-    this.upcoming_letter = new UpcomingLetter($('#upcoming_letter'), upcoming_offset)
-
-  position_letters: ->
     width = $(window).width()
     height = $(window).height()
 
-    this.current_letter.position( width, height )
-    this.upcoming_letter.position( width, height )
+    this.game_completed = false
+
+    this.text_server = text_server
+    this.current_letter = new CurrentLetter($('#current_letter'), [width,height])
+    this.upcoming_letter = new UpcomingLetter($('#upcoming_letter'), [width,height], upcoming_offset)
+
+  position_letters: ->
+    this.current_letter.position()
+    this.upcoming_letter.position()
 
     this.current_letter.show()
     this.upcoming_letter.hide()

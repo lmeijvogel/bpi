@@ -1,6 +1,8 @@
 class this.Letter
-  constructor: (element) ->
+  constructor: (element, screen_size) ->
     this.element = element
+    this.screen_width = screen_size[0]
+    this.screen_height = screen_size[1]
 
   set_position: (x, y) ->
     this.element.css('left', x)
@@ -35,20 +37,18 @@ class this.CurrentLetter extends Letter
   set_error: ->
     this.element.addClass('error')
 
-  position: (screen_width, screen_height) ->
-    x = (screen_width - this.element.width()) / 2
-    y = (screen_height - this.element.height()) / 2
+  position: ->
+    x = (this.screen_width - this.element.width()) / 2
+    y = (this.screen_height - this.element.height()) / 2
     this.set_position(x, y)
 
 class this.UpcomingLetter extends Letter
-  constructor: (element, upcoming_offset) ->
-    super(element)
+  constructor: (element, screen_size, upcoming_offset) ->
+    super(element, screen_size)
     this.upcoming_offset = upcoming_offset
 
-  position: (screen_width, screen_height) ->
-    x = (screen_width - this.element.width()) / 2
-    y = (screen_height - this.element.height()) / 2
+  position: ->
+    x = (this.screen_width - this.element.width()) / 2
+    y = (this.screen_height - this.element.height()) / 2
 
     this.set_position(x + this.upcoming_offset, y)
-
-
