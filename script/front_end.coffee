@@ -25,7 +25,7 @@ class this.FrontEnd
     if this.text_server.has_more_letters()
       if this.animating
         this.current_letter.set( this.text_server.current_letter() )
-        this.position_letters
+        this.position_letters()
 
       next_letter = this.text_server.next_letter()
       this.upcoming_letter.set( next_letter )
