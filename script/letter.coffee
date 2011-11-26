@@ -41,6 +41,7 @@ class this.CurrentLetter extends Letter
     x = (this.screen_width - this.element.width()) / 2
     y = (this.screen_height - this.element.height()) / 2
     this.set_position(x, y)
+    this.show()
 
 class this.UpcomingLetter extends Letter
   constructor: (element, screen_size, upcoming_offset) ->
@@ -52,3 +53,4 @@ class this.UpcomingLetter extends Letter
     y = (this.screen_height - this.element.height()) / 2
 
     this.set_position(x + this.upcoming_offset, y)
+    this.hide()

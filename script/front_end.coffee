@@ -15,9 +15,6 @@ class this.FrontEnd
     this.current_letter.position()
     this.upcoming_letter.position()
 
-    this.current_letter.show()
-    this.upcoming_letter.hide()
-
   initialize_letters: ->
     this.current_letter.set( this.text_server.current_letter() )
 
