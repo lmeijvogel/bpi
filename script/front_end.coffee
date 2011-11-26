@@ -27,10 +27,7 @@ class this.FrontEnd
       next_letter = this.text_server.next_letter()
       this.upcoming_letter.set( next_letter )
 
-      this.current_letter.element.fadeOut( 'fast', =>
-        this.current_letter.set( next_letter )
-      )
-
+      this.current_letter.next_letter( next_letter )
       this.slide_in_upcoming(this.upcoming_letter, this.current_letter)
     else
       this.finish_game()

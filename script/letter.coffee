@@ -43,6 +43,11 @@ class this.CurrentLetter extends Letter
     this.set_position(x, y)
     this.show()
 
+  next_letter: (letter) ->
+    this.element.fadeOut( 'fast', =>
+      this.set( letter )
+    )
+
 class this.UpcomingLetter extends Letter
   constructor: (element, screen_size, upcoming_offset) ->
     super(element, screen_size)
