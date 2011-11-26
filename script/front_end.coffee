@@ -43,13 +43,9 @@ class this.FrontEnd
   slide_in_upcoming: (upcoming_letter, current_letter) ->
     this.animating = true
 
-    upcoming_letter.show()
-    upcoming_letter.element.animate
-      left: '-='+ this.upcoming_letter.upcoming_offset
-      200
-      =>
-        this.position_letters()
-        this.animating = false
+    upcoming_letter.slide_in =>
+      this.position_letters()
+      this.animating = false
 
   key_pressed: ( charCode, keyCode ) ->
     return if this.game_completed

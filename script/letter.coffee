@@ -54,3 +54,11 @@ class this.UpcomingLetter extends Letter
 
     this.set_position(x + this.upcoming_offset, y)
     this.hide()
+
+  slide_in: (callback) ->
+    this.show()
+    this.element.animate
+      left: '-='+ this.upcoming_offset
+      200
+      =>
+        callback.call()
