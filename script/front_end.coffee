@@ -37,7 +37,9 @@ class this.FrontEnd
 
   finish_game: ->
     this.game_completed = true
-    $('#letters').hide()
+    this.upcoming_letter.hide()
+    this.current_letter.hide()
+
     $('#congratulations').show()
 
   slide_in_upcoming: (upcoming_letter, current_letter) ->
