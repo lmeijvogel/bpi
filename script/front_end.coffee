@@ -60,11 +60,14 @@ class this.FrontEnd
     entered_letter = String.fromCharCode(charCode)
     pressed_key = keyCode
 
-    switch pressed_key
-      when 27, 116, 192 then return # escape, F5, alt-tab
-      when 13 then is_correct = current_letter == "\n"
-      else
-        is_correct = entered_letter == current_letter
+    if entered_letter == current_letter
+      is_correct = true
+    else
+      switch pressed_key
+        when 27, 116, 192 then return # escape, F5, alt-tab
+        when 13 then is_correct = current_letter == "\n"
+        else
+          is_correct = false
 
     if is_correct
       this.letter_typed( this.text_server )
