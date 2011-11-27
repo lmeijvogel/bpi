@@ -9,6 +9,10 @@ class this.FrontEnd
     this.current_letter = current_letter
     this.last_letter = last_letter
 
+  start_game: ->
+    this.initialize_letters()
+    this.position_letters()
+
   position_letters: ->
     this.current_letter.position()
     this.last_letter.position()

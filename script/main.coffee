@@ -11,9 +11,7 @@ jQuery ->
     last_letter = new LastLetter($('#last_letter'), screen_dimensions, upcoming_offset)
 
     front_end = new FrontEnd( text_server, current_letter, last_letter )
-
-    front_end.initialize_letters()
-    front_end.position_letters()
+    front_end.start_game()
 
     register_keypresses(text_server, front_end)
 
