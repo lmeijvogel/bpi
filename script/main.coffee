@@ -8,9 +8,9 @@ jQuery ->
     screen_dimensions = [$(window).width(), $(window).height()]
 
     current_letter = new CurrentLetter($('#current_letter'), screen_dimensions)
-    upcoming_letter = new UpcomingLetter($('#upcoming_letter'), screen_dimensions, upcoming_offset)
+    last_letter = new LastLetter($('#last_letter'), screen_dimensions, upcoming_offset)
 
-    front_end = new FrontEnd( text_server, current_letter, upcoming_letter )
+    front_end = new FrontEnd( text_server, current_letter, last_letter )
 
     front_end.initialize_letters()
     front_end.position_letters()

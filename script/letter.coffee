@@ -24,6 +24,12 @@ class this.Letter
     this.element.removeClass('error')
     this.element.text(displayed_letter)
 
+  position: ->
+    x = (this.screen_width - this.element.width()) / 2
+    y = (this.screen_height - this.element.height()) / 2
+    this.set_position(x, y)
+    this.show()
+
   show: ->
     this.element.show()
 
@@ -37,37 +43,32 @@ class this.CurrentLetter extends Letter
   set_error: ->
     this.element.addClass('error')
 
-  position: ->
-    x = (this.screen_width - this.element.width()) / 2
-    y = (this.screen_height - this.element.height()) / 2
-    this.set_position(x, y)
-    this.show()
-
   next_letter: (letter) ->
-    this.element.fadeOut( 'fast', =>
-      this.set( letter )
-    )
+    this.set( letter )
 
-class this.UpcomingLetter extends Letter
-  constructor: (element, screen_size, upcoming_offset) ->
+class this.LastLetter extends Letter
+  constructor: (element, screen_size, slide_distance) ->
     super(element, screen_size)
-    this.upcoming_offset = upcoming_offset
+    this.slide_distance = slide_distance
 
   position: ->
-    x = (this.screen_width - this.element.width()) / 2
-    y = (this.screen_height - this.element.height()) / 2
-
-    this.set_position(x + this.upcoming_offset, y)
+    super()
+    this.element.css({ opacity: 1 })
     this.hide()
+
+  slide_out: (callback) ->
+    this.show()
+    this.element.animate
+      opacity: 0.25
+      left: '-=' + this.slide_distance
+      600
+      =>
+        this.hide()
+        callback.call()
 
   next_letter: (letter, callback) ->
     this.set(letter)
-    this.slide_in(callback)
-
-  slide_in: (callback) ->
+    this.position()
     this.show()
-    this.element.animate
-      left: '-='+ this.upcoming_offset
-      200
-      =>
-        callback.call()
+
+    this.slide_out(callback)

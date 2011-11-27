@@ -23,8 +23,8 @@
     <h1><?php echo $title ?></h1>
 
     <div id="letters">
+      <div id="last_letter" class="letter" style="display: none"></div>
       <div id="current_letter" class="letter"></div>
-      <div id="upcoming_letter" class="letter" style="display: none"></div>
     </div>
     <div id="congratulations" style="display:none"><?php echo $congratulations ?>
   </body>

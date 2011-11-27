@@ -1,5 +1,5 @@
 class this.FrontEnd
-  constructor: (text_server, current_letter, upcoming_letter) ->
+  constructor: (text_server, current_letter, last_letter) ->
     this.animating = false
 
     this.game_completed = false
@@ -7,11 +7,11 @@ class this.FrontEnd
     this.text_server = text_server
 
     this.current_letter = current_letter
-    this.upcoming_letter = upcoming_letter
+    this.last_letter = last_letter
 
   position_letters: ->
     this.current_letter.position()
-    this.upcoming_letter.position()
+    this.last_letter.position()
 
   initialize_letters: ->
     this.current_letter.set( this.text_server.current_letter() )
@@ -19,23 +19,24 @@ class this.FrontEnd
   letter_typed: ->
     if this.text_server.has_more_letters()
       if this.animating
-        this.current_letter.set( this.text_server.current_letter() )
+        this.last_letter.stop()
         this.position_letters()
+
+      this.last_letter.next_letter( this.text_server.current_letter(), =>
+        this.position_letters
+        this.animating = false
+      )
 
       next_letter = this.text_server.next_letter()
 
       this.animating = true
       this.current_letter.next_letter( next_letter )
-      this.upcoming_letter.next_letter( next_letter, =>
-        this.position_letters()
-        this.animating = false
-      )
     else
       this.finish_game()
 
   finish_game: ->
     this.game_completed = true
-    this.upcoming_letter.hide()
+    this.last_letter.hide()
     this.current_letter.hide()
 
     $('#congratulations').show()
