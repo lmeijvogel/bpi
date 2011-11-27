@@ -35,6 +35,9 @@ class this.FrontEnd
 
       this.animating = true
       this.current_letter.next_letter( next_letter )
+
+      if this.letter_typed_callback
+        this.letter_typed_callback.call()
     else
       this.finish_game()
 
