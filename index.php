@@ -26,6 +26,6 @@
       <div id="last_letter" class="letter" style="display: none"></div>
       <div id="current_letter" class="letter"></div>
     </div>
-    <div id="congratulations" style="display:none"><?php echo $congratulations ?>
+    <div id="congratulations" style="display:none"><?php echo $congratulations ?></div>
   </body>
 </html>
