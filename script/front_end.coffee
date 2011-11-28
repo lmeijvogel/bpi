@@ -9,6 +9,8 @@ class this.FrontEnd
     this.current_letter = current_letter
     this.last_letter = last_letter
 
+    this.demo_letter_index = -1
+
   start_game: ->
     this.initialize_letters()
     this.position_letters()
@@ -60,6 +62,8 @@ class this.FrontEnd
     if entered_letter == current_letter
       is_correct = true
     else
+      this.check_demo_sequence(entered_letter)
+
       switch pressed_key
         when 27, 116, 192 then return # escape, F5, alt-tab
         when 13 then is_correct = current_letter == "\n"
@@ -70,6 +74,27 @@ class this.FrontEnd
       this.letter_typed( this.text_server )
     else
       this.set_error()
+
+  check_demo_sequence: (entered_letter) ->
+    letters = ['d','e','m','o']
+
+    expected_letter = letters[this.demo_letter_index + 1]
+
+    if entered_letter == expected_letter
+      this.demo_letter_index++
+
+
+      if this.demo_letter_index == 3
+        this.run_demo()
+    else
+      this.demo_letter_index = -1
+
+  run_demo: ->
+    $.doTimeout(200, =>
+      this.letter_typed( this.text_server )
+
+      return !$('#congratulations').is(':visible')
+    )
 
   set_error: ->
     this.current_letter.set_error()

@@ -12,6 +12,7 @@
   <head>
     <title><?php echo $title; ?></title>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.js"></script>
+    <script type="text/javascript" src="script/jquery-dotimeout/jquery.ba-dotimeout.js"></script>
     <script type="text/javascript" src="script/typed_text.js"></script>
     <script type="text/javascript" src="script/main.js"></script>
     <script type="text/javascript" src="script/front_end.js"></script>
