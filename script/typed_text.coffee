@@ -14,4 +14,6 @@ class this.TypedText
 
   next_letter: ->
     this.current_letter++
-    $("#letter_#{this.current_letter}").fadeIn()
+
+    letter = $("#letter_#{this.current_letter}")
+    letter.show()
