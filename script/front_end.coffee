@@ -9,7 +9,7 @@ class this.FrontEnd
     this.current_letter = current_letter
     this.last_letter = last_letter
 
-    this.demo_letter_index = -1
+    this.demo_sequence_checker = new DemoSequenceChecker('doededemo')
 
   start_game: ->
     this.initialize_letters()
@@ -59,11 +59,10 @@ class this.FrontEnd
     entered_letter = String.fromCharCode(charCode)
     pressed_key = keyCode
 
+    this.check_demo_sequence(entered_letter)
     if entered_letter == current_letter
       is_correct = true
     else
-      this.check_demo_sequence(entered_letter)
-
       switch pressed_key
         when 27, 116, 192 then return # escape, F5, alt-tab
         when 13 then is_correct = current_letter == "\n"
@@ -76,18 +75,10 @@ class this.FrontEnd
       this.set_error()
 
   check_demo_sequence: (entered_letter) ->
-    letters = ['d','e','m','o']
+    this.demo_sequence_checker.letter_pressed(entered_letter)
 
-    expected_letter = letters[this.demo_letter_index + 1]
-
-    if entered_letter == expected_letter
-      this.demo_letter_index++
-
-
-      if this.demo_letter_index == 3
-        this.run_demo()
-    else
-      this.demo_letter_index = -1
+    if this.demo_sequence_checker.complete()
+      this.run_demo()
 
   run_demo: ->
     $.doTimeout(200, =>

@@ -18,6 +18,7 @@
     <script type="text/javascript" src="script/front_end.js"></script>
     <script type="text/javascript" src="script/letter.js"></script>
     <script type="text/javascript" src="script/text_server.js"></script>
+    <script type="text/javascript" src="script/demo_sequence_checker.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css" />
   </head>
   <body>
