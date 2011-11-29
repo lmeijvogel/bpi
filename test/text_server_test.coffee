@@ -1,3 +1,5 @@
+module "TextServer"
+
 test('if_empty_string_is_undefined', ->
   subject = new TextServer("")
 
