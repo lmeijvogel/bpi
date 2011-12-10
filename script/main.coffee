@@ -10,9 +10,10 @@ jQuery ->
     current_letter = new CurrentLetter($('#current_letter'), screen_dimensions)
     last_letter = new LastLetter($('#last_letter'), screen_dimensions, upcoming_offset)
 
+    arrow = new Arrow($('#arrow'))
     typed_text = new TypedText($('#typed_text'), text)
 
-    front_end = new FrontEnd( text_server, current_letter, last_letter )
+    front_end = new FrontEnd( text_server, current_letter, last_letter, arrow )
     front_end.letter_typed_callback = -> typed_text.next_letter()
     front_end.start_game()
 

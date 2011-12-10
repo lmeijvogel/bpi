@@ -35,4 +35,12 @@ html {
     #last_letter {
       z-index: 200
     }
+
+    #arrow {
+      position: absolute;
+      display: none;
+
+      width: 50px;
+      height: 30px;
+    }
 }

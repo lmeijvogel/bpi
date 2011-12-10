@@ -1,5 +1,5 @@
 class this.FrontEnd
-  constructor: (text_server, current_letter, last_letter) ->
+  constructor: (text_server, current_letter, last_letter, arrow) ->
     this.animating = false
 
     this.game_completed = false
@@ -8,12 +8,14 @@ class this.FrontEnd
 
     this.current_letter = current_letter
     this.last_letter = last_letter
+    this.arrow = arrow
 
     this.demo_sequence_checker = new DemoSequenceChecker('doededemo')
 
   start_game: ->
     this.initialize_letters()
     this.position_letters()
+    this.arrow.position()
 
   position_letters: ->
     this.current_letter.position()
