@@ -15,7 +15,8 @@ class this.FrontEnd
   start_game: ->
     this.initialize_letters()
     this.position_letters()
-    this.arrow.position()
+
+    this.set_hints()
 
   position_letters: ->
     this.current_letter.position()
@@ -53,6 +54,8 @@ class this.FrontEnd
     $('#congratulations').show()
 
   key_pressed: ( charCode, keyCode ) ->
+    this.cancel_hints()
+
     return if this.game_completed
 
     is_correct = false
@@ -75,6 +78,13 @@ class this.FrontEnd
       this.letter_typed( this.text_server )
     else
       this.set_error()
+
+  set_hints: ->
+    this.arrow.position()
+    this.arrow.set_timeout()
+
+  cancel_hints: ->
+    this.arrow.cancel_timeout()
 
   check_demo_sequence: (entered_letter) ->
     this.demo_sequence_checker.letter_pressed(entered_letter)
