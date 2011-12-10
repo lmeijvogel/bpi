@@ -43,4 +43,9 @@ html {
       width: 50px;
       height: 30px;
     }
+
+    #hint_text {
+      position: absolute;
+      display: none;
+    }
 }

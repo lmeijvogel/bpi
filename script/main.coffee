@@ -12,8 +12,9 @@ jQuery ->
 
     arrow = new Arrow($('#arrow'))
     typed_text = new TypedText($('#typed_text'), text)
+    hint_text = new HintText($('#hint_text'), screen_dimensions)
 
-    front_end = new FrontEnd( text_server, current_letter, last_letter, arrow )
+    front_end = new FrontEnd( text_server, current_letter, last_letter, arrow, hint_text )
     front_end.letter_typed_callback = -> typed_text.next_letter()
     front_end.start_game()
 

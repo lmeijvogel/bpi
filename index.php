@@ -3,10 +3,12 @@
   $title_path = dirname(__FILE__) ."/content/title.txt";
   $contents_path = dirname(__FILE__) ."/content/contents.txt";
   $congratulations_path = dirname(__FILE__) ."/content/congratulations.txt";
+  $hint_text_path = dirname(__FILE__) ."/content/hint_text.txt";
 
   $title = file_get_contents($title_path);
   $contents = file_get_contents($contents_path);
   $congratulations = file_get_contents($congratulations_path);
+  $hint_text = file_get_contents($hint_text_path);
 
   function get_javascript_filenames($javascript_dir) {
     $result = Array();
@@ -49,6 +51,7 @@
       <div id="current_letter" class="letter"></div>
     </div>
     <div id="typed_text"></div>
+    <div id="hint_text"><?php echo $hint_text ?></div>
     <div id="congratulations" style="display:none"><?php echo $congratulations ?></div>
   </body>
 </html>
