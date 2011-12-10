@@ -27,7 +27,8 @@
 <html>
   <head>
     <title><?php echo $title; ?></title>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
     <script type="text/javascript" src="script/jquery-dotimeout/jquery.ba-dotimeout.js"></script>
     <?php
       $files = get_javascript_filenames('script/');
