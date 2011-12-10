@@ -3,6 +3,9 @@ jQuery ->
 
   last_letter_slide_distance = 300
 
+  arrow_timeout = 2000
+  hint_text_timeout = 5000
+
   if text?
     text_server = new TextServer(text)
 
@@ -11,9 +14,9 @@ jQuery ->
     current_letter = new CurrentLetter($('#current_letter'), screen_dimensions)
     last_letter = new LastLetter($('#last_letter'), screen_dimensions, last_letter_slide_distance)
 
-    arrow = new Arrow($('#arrow'))
+    arrow = new Arrow($('#arrow'), arrow_timeout)
     typed_text = new TypedText($('#typed_text'), text)
-    hint_text = new HintText($('#hint_text'), screen_dimensions)
+    hint_text = new HintText($('#hint_text'), screen_dimensions, hint_text_timeout)
 
     front_end = new FrontEnd( text_server, current_letter, last_letter, arrow, hint_text )
     front_end.letter_typed_callback = -> typed_text.next_letter()

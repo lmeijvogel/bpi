@@ -1,6 +1,7 @@
 class this.Arrow
-  constructor: (element) ->
+  constructor: (element, display_timeout) ->
     this.element = element
+    this.display_timeout = display_timeout
 
   position: ->
     x = $('#current_letter').css('left')
@@ -15,7 +16,7 @@ class this.Arrow
 
   set_timeout: ->
     this.shouldShow = true
-    $.doTimeout( 2000, =>
+    $.doTimeout( this.display_timeout, =>
       this.show()
     )
 

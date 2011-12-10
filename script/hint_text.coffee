@@ -1,8 +1,9 @@
 class this.HintText
-  constructor: (element, screen_size) ->
+  constructor: (element, screen_size, display_timeout) ->
     this.element = element
     this.screen_width = screen_size[0]
     this.screen_height = screen_size[1]
+    this.display_timeout = display_timeout
 
   position: ->
     x = (this.screen_width - this.element.width()) / 2
@@ -13,7 +14,7 @@ class this.HintText
   set_timeout: ->
     this.shouldShow = true
 
-    $.doTimeout( 2000, =>
+    $.doTimeout( this.display_timeout, =>
       this.show()
     )
 
