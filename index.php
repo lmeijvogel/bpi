@@ -7,18 +7,35 @@
   $title = file_get_contents($title_path);
   $contents = file_get_contents($contents_path);
   $congratulations = file_get_contents($congratulations_path);
+
+  function get_javascript_filenames($javascript_dir) {
+    $result = Array();
+
+    $dirs = scandir($javascript_dir);
+    foreach ($dirs as $entry) {
+      $entry_path = $javascript_dir . $entry;
+      $entry_parts = pathinfo($entry_path);
+
+      if ($entry_parts['extension'] == 'js') {
+        $result[] = $entry_path;
+      }
+    }
+
+    return $result;
+  }
 ?>
 <html>
   <head>
     <title><?php echo $title; ?></title>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.js"></script>
     <script type="text/javascript" src="script/jquery-dotimeout/jquery.ba-dotimeout.js"></script>
-    <script type="text/javascript" src="script/typed_text.js"></script>
-    <script type="text/javascript" src="script/main.js"></script>
-    <script type="text/javascript" src="script/front_end.js"></script>
-    <script type="text/javascript" src="script/letter.js"></script>
-    <script type="text/javascript" src="script/text_server.js"></script>
-    <script type="text/javascript" src="script/demo_sequence_checker.js"></script>
+    <?php
+      $files = get_javascript_filenames('script/');
+
+      foreach ($files as $file) {
+        echo "<script type=\"text/javascript\" src=\"$file\"></script>";
+      }
+    ?>
     <link rel="stylesheet" type="text/css" href="css/style.css" />
   </head>
   <body>
