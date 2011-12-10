@@ -82,15 +82,11 @@ class this.FrontEnd
 
   set_hints: ->
     this.arrow.set()
-
-    this.hint_text.position()
-    this.hint_text.set_timeout()
+    this.hint_text.set()
 
   cancel_hints: ->
     this.arrow.cancel()
-
-    this.hint_text.cancel_timeout()
-    this.hint_text.hide()
+    this.hint_text.cancel()
 
   check_demo_sequence: (entered_letter) ->
     this.demo_sequence_checker.letter_pressed(entered_letter)
