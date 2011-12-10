@@ -1,7 +1,8 @@
 class this.Arrow
-  constructor: (element, display_timeout) ->
+  constructor: (element, display_timeout, movement_distance) ->
     this.element = element
     this.display_timeout = display_timeout
+    this.movement_distance = movement_distance
 
   position: ->
     x = $('#current_letter').css('left')
@@ -30,14 +31,12 @@ class this.Arrow
     motionTo = 'easeInQuad'
     motionFrom = 'easeOutQuad'
 
-    distance = 200
-
     # "silently" move arrow back so it can point forward again.
-    this.element.animate({left:'-='+distance},0, motionFrom)
+    this.element.animate({left:'-='+this.movement_distance},0, motionFrom)
     this.element.fadeIn()
     for i in [0..3]
-      this.element.animate({left:'+='+distance},400, motionTo)
-      this.element.animate({left:'-='+distance},400, motionFrom)
+      this.element.animate({left:'+='+this.movement_distance},400, motionTo)
+      this.element.animate({left:'-='+this.movement_distance},400, motionFrom)
 
-    this.element.animate({left:'+='+distance},400, motionTo)
+    this.element.animate({left:'+='+this.movement_distance},400, motionTo)
     this.element.fadeOut()
