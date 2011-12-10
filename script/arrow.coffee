@@ -26,13 +26,17 @@ class this.Arrow
     unless this.shouldShow
       return
 
-    this.element.fadeIn()
     motionTo = 'easeInQuad'
     motionFrom = 'easeOutQuad'
 
     distance = 200
 
+    # "silently" move arrow back so it can point forward again.
+    this.element.animate({left:'-='+distance},0, motionFrom)
+    this.element.fadeIn()
     for i in [0..3]
-      this.element.animate({left:'-='+distance},400, motionFrom)
       this.element.animate({left:'+='+distance},400, motionTo)
+      this.element.animate({left:'-='+distance},400, motionFrom)
+
+    this.element.animate({left:'+='+distance},400, motionTo)
     this.element.fadeOut()
