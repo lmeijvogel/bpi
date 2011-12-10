@@ -19,9 +19,6 @@ jQuery ->
     register_keypresses(text_server, front_end)
 
 load_text = ->
-  $('#notice').text("Bezig met laden")
-  $('#notice').show()
-
   result = null
 
   # Perform request synchronously so a value can be returned
