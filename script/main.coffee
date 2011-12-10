@@ -1,14 +1,15 @@
 jQuery ->
   text = load_text()
 
+  last_letter_slide_distance = 300
+
   if text?
-    upcoming_offset = 300
     text_server = new TextServer(text)
 
     screen_dimensions = [$(window).width(), $(window).height()]
 
     current_letter = new CurrentLetter($('#current_letter'), screen_dimensions)
-    last_letter = new LastLetter($('#last_letter'), screen_dimensions, upcoming_offset)
+    last_letter = new LastLetter($('#last_letter'), screen_dimensions, last_letter_slide_distance)
 
     arrow = new Arrow($('#arrow'))
     typed_text = new TypedText($('#typed_text'), text)
