@@ -4,24 +4,15 @@ class this.Arrow
     this.display_timeout = display_timeout
     this.movement_distance = movement_distance
 
-  position: ->
-    x = $('#current_letter').css('left')
-    y = $('#current_letter').css('top')
-
-    this.element.css('left', this.subtract_pixels(x, 50))
-    this.element.css('top', y)
+  set: ->
+    this.position()
+    this.set_timeout()
 
   subtract_pixels: ( position, value ) ->
     position_text = position.replace("px", "")
     return position_text - value
 
-  set_timeout: ->
-    this.shouldShow = true
-    $.doTimeout( this.display_timeout, =>
-      this.show()
-    )
-
-  cancel_timeout: ->
+  cancel: ->
     this.shouldShow = false
 
   show: ->
@@ -40,3 +31,16 @@ class this.Arrow
 
     this.element.animate({left:'+='+this.movement_distance},400, motionTo)
     this.element.fadeOut()
+
+  position: ->
+    x = $('#current_letter').css('left')
+    y = $('#current_letter').css('top')
+
+    this.element.css('left', this.subtract_pixels(x, 50))
+    this.element.css('top', y)
+
+  set_timeout: ->
+    this.shouldShow = true
+    $.doTimeout( this.display_timeout, =>
+      this.show()
+    )

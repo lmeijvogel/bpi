@@ -81,14 +81,13 @@ class this.FrontEnd
       this.set_error()
 
   set_hints: ->
-    this.arrow.position()
-    this.arrow.set_timeout()
+    this.arrow.set()
 
     this.hint_text.position()
     this.hint_text.set_timeout()
 
   cancel_hints: ->
-    this.arrow.cancel_timeout()
+    this.arrow.cancel()
 
     this.hint_text.cancel_timeout()
     this.hint_text.hide()
