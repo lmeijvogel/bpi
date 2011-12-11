@@ -11,7 +11,7 @@ class this.FrontEnd
     this.arrow = arrow
     this.hint_text = hint_text
 
-    this.text_sequence_checker = new TextSequenceChecker('doededemo', => this.run_demo() )
+    this.text_sequence_checkers = [new TextSequenceChecker('doededemo', => this.run_demo() )]
 
   start_game: ->
     this.initialize_letters()
@@ -66,7 +66,7 @@ class this.FrontEnd
     entered_letter = String.fromCharCode(charCode)
     pressed_key = keyCode
 
-    this.check_text_sequence(entered_letter)
+    this.check_text_sequences(entered_letter)
     if entered_letter == current_letter
       is_correct = true
     else
@@ -89,8 +89,9 @@ class this.FrontEnd
     this.arrow.cancel()
     this.hint_text.cancel()
 
-  check_text_sequence: (entered_letter) ->
-    this.text_sequence_checker.letter_pressed(entered_letter)
+  check_text_sequences: (entered_letter) ->
+    for checker in this.text_sequence_checkers
+      checker.letter_pressed(entered_letter)
 
   run_demo: ->
     $.doTimeout(200, =>
