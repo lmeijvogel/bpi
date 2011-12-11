@@ -6,7 +6,8 @@ class Main
     this.last_letter_slide_distance = 300
 
     this.star_distance = 80
-    this.arrow_timeout = 2000
+    this.arrow_timeout = 10
+    this.arrow_start_position = 50
     this.arrow_movement_distance = 5
     this.hint_text_timeout = 5000
 
@@ -24,7 +25,7 @@ class Main
       first_star = new Star($('#first_star'), screen_dimensions, [0,0], this.star_distance)
       second_star = new Star($('#second_star'), screen_dimensions, [15,0], this.star_distance)
 
-      arrow = new Arrow($('#arrow'), this.arrow_timeout, this.arrow_movement_distance)
+      arrow = new Arrow($('#arrow'), screen_dimensions, this.arrow_start_position, this.arrow_movement_distance, this.arrow_timeout)
       typed_text = new TypedText($('#typed_text'), text)
       hint_text = new HintText($('#hint_text'), screen_dimensions, this.hint_text_timeout)
 
