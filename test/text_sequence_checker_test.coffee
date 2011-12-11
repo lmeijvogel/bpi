@@ -36,7 +36,9 @@ test('when a wrong letter is pressed during the sequence', ->
 )
 
 test('when the sequence is completed', ->
-  subject = new TextSequenceChecker("a")
+  executed = false
+
+  subject = new TextSequenceChecker("a", -> executed = true)
   subject.letter_pressed('a')
-  ok(subject.complete(), "Sequence is complete")
+  ok(executed, "Callback is called")
 )

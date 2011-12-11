@@ -11,7 +11,7 @@ class this.FrontEnd
     this.arrow = arrow
     this.hint_text = hint_text
 
-    this.text_sequence_checker = new TextSequenceChecker('doededemo')
+    this.text_sequence_checker = new TextSequenceChecker('doededemo', => this.run_demo() )
 
   start_game: ->
     this.initialize_letters()
@@ -91,9 +91,6 @@ class this.FrontEnd
 
   check_text_sequence: (entered_letter) ->
     this.text_sequence_checker.letter_pressed(entered_letter)
-
-    if this.text_sequence_checker.complete()
-      this.run_demo()
 
   run_demo: ->
     $.doTimeout(200, =>
