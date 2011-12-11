@@ -13,8 +13,15 @@ class this.FrontEnd
     this.arrow = arrow
     this.hint_text = hint_text
 
+    # The difference between the demo sequence checker and the text sequence checkers is that the
+    # text sequence checkers can only be triggered by valid characters, while the demo sequence checker
+    # can only be triggered by invalid characters.
+    #
+    # Since demo mode just calls letter_typed repeatedly, the text sequences are checked there and not
+    # in key_pressed(), otherwise they would not be triggered in demo mode.
+    this.demo_sequence_checker = new TextSequenceChecker('doededemo', => this.run_demo() )
+
     this.text_sequence_checkers = [
-      new TextSequenceChecker('doededemo', => this.run_demo() ),
       new TextSequenceChecker('Hee', => this.display_first_star() ),
       new TextSequenceChecker('dit is', => this.display_both_stars() )
     ]
@@ -34,6 +41,8 @@ class this.FrontEnd
     this.current_letter.appear()
 
   letter_typed: ->
+    this.check_text_sequences( this.text_server.current_letter() )
+
     if this.text_server.has_more_letters()
       if this.animating
         this.last_letter.stop()
@@ -72,7 +81,7 @@ class this.FrontEnd
     entered_letter = String.fromCharCode(charCode)
     pressed_key = keyCode
 
-    this.check_text_sequences(entered_letter)
+    this.check_demo_sequence(entered_letter)
 
     if entered_letter == current_letter
       is_correct = true
@@ -95,6 +104,9 @@ class this.FrontEnd
   cancel_hints: ->
     this.arrow.cancel()
     this.hint_text.cancel()
+
+  check_demo_sequence: (entered_letter) ->
+    this.demo_sequence_checker.letter_pressed(entered_letter)
 
   check_text_sequences: (entered_letter) ->
     for checker in this.text_sequence_checkers
