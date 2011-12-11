@@ -4,6 +4,9 @@ class this.Letter
     this.screen_width = screen_size[0]
     this.screen_height = screen_size[1]
 
+  appear: ->
+    this.element.fadeIn(1000)
+
   set_position: (x, y) ->
     this.element.css('left', x)
     this.element.css('top', y)

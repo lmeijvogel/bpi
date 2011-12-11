@@ -1,6 +1,7 @@
 jQuery ->
   text = load_text()
 
+  start_game_timeout = 2000
   last_letter_slide_distance = 300
 
   arrow_timeout = 2000
@@ -21,9 +22,12 @@ jQuery ->
 
     front_end = new FrontEnd( text_server, current_letter, last_letter, arrow, hint_text )
     front_end.letter_typed_callback = -> typed_text.next_letter()
-    front_end.start_game()
 
-    register_keypresses(text_server, front_end)
+    $.doTimeout( start_game_timeout, ->
+      register_keypresses(text_server, front_end)
+
+      front_end.start_game()
+    )
 
 load_text = ->
   result = null

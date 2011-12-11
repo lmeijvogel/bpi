@@ -25,6 +25,7 @@ class this.FrontEnd
 
   initialize_letters: ->
     this.current_letter.set( this.text_server.current_letter() )
+    this.current_letter.appear()
 
   letter_typed: ->
     if this.text_server.has_more_letters()
