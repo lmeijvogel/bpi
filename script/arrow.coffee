@@ -13,6 +13,7 @@ class this.Arrow
     return position_text - value
 
   cancel: ->
+    this.element.hide()
     this.shouldShow = false
 
   show: ->
