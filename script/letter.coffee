@@ -1,6 +1,6 @@
 class this.Letter extends CenteredElement
   constructor: (element, screen_size) ->
-    super(element, screen_size, 0)
+    super(element, screen_size, [0,0])
 
   appear: ->
     this.element.fadeIn(1000)

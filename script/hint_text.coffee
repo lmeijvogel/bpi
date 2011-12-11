@@ -1,6 +1,6 @@
 class this.HintText extends CenteredElement
   constructor: (element, screen_size, display_timeout) ->
-    super(element, screen_size, 0)
+    super(element, screen_size, [0,100])
 
     this.display_timeout = display_timeout
 
@@ -20,12 +20,6 @@ class this.HintText extends CenteredElement
 
   hide: ->
     this.element.fadeOut()
-
-  position: ->
-    x = (this.screen_width - this.element.width()) / 2
-    y = (this.screen_height - this.element.height()) / 2
-
-    this.set_position( x, y+100)
 
   set_timeout: ->
     this.shouldShow = true

@@ -9,7 +9,7 @@ class this.CenteredElement
   position: ->
     x = (this.screen_width - this.element.width()) / 2
     y = (this.screen_height - this.element.height()) / 2
-    this.set_position(x+this.offset_from_center, y)
+    this.set_position(x+this.offset_from_center[0], y + this.offset_from_center[1])
     this.element.show()
 
   set_position: (x, y) ->
