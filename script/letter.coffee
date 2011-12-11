@@ -1,15 +1,9 @@
-class this.Letter
+class this.Letter extends CenteredElement
   constructor: (element, screen_size) ->
-    this.element = element
-    this.screen_width = screen_size[0]
-    this.screen_height = screen_size[1]
+    super(element, screen_size, 0)
 
   appear: ->
     this.element.fadeIn(1000)
-
-  set_position: (x, y) ->
-    this.element.css('left', x)
-    this.element.css('top', y)
 
   set: (letter) ->
     displayed_letter = letter
@@ -26,12 +20,6 @@ class this.Letter
 
     this.element.removeClass('error')
     this.element.text(displayed_letter)
-
-  position: ->
-    x = (this.screen_width - this.element.width()) / 2
-    y = (this.screen_height - this.element.height()) / 2
-    this.set_position(x, y)
-    this.show()
 
   show: ->
     this.element.show()
