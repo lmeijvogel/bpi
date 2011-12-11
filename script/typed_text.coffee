@@ -8,7 +8,12 @@ class this.TypedText
     element_contents = $('<div>')
 
     for char, index in text.split ''
-      element_contents.append("<span id='letter_#{index}' style='display: none;'>#{char}</span>")
+      if char == "\n"
+        display_char = "<br />"
+      else
+        display_char = char
+
+      element_contents.append("<span id='letter_#{index}' style='display: none;'>#{display_char}</span>")
 
     this.element.append(element_contents)
 
