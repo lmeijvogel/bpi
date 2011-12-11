@@ -30,19 +30,10 @@ class Main
         $.doTimeout( this.fade_background_timeout, =>
           $('#blind').fadeIn('slow')
 
-          $.doTimeout( this.start_game_timeout, =>
-            this.register_keypresses(text_server, front_end)
-
-            front_end.start_game()
-          )
+          this.start_game(text_server, front_end)
         )
       else
-        $.doTimeout( this.start_game_timeout, =>
-          this.register_keypresses(text_server, front_end)
-
-          front_end.start_game()
-        )
-
+        this.start_game(text_server, front_end)
 
   load_text: ->
     result = null
@@ -59,6 +50,13 @@ class Main
         $('#notice').show()
 
     result
+
+  start_game: (text_server, front_end) ->
+    $.doTimeout( this.start_game_timeout, =>
+      this.register_keypresses(text_server, front_end)
+
+      front_end.start_game()
+    )
 
   register_keypresses: (text_server, front_end) ->
     $(window).keypress( (event) ->
