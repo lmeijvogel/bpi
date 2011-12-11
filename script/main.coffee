@@ -28,7 +28,9 @@ class Main
       typed_text = new TypedText($('#typed_text'), text)
       hint_text = new HintText($('#hint_text'), screen_dimensions, this.hint_text_timeout)
 
-      front_end = new FrontEnd( text_server, current_letter, last_letter, first_star, second_star, arrow, hint_text )
+      congratulations = new Congratulations($('#congratulations'), screen_dimensions, [0, 0])
+
+      front_end = new FrontEnd( text_server, current_letter, last_letter, first_star, second_star, arrow, hint_text, congratulations )
       front_end.letter_typed_callback = -> typed_text.next_letter()
 
       if (this.fade_background)

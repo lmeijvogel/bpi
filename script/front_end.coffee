@@ -1,5 +1,5 @@
 class this.FrontEnd
-  constructor: (text_server, current_letter, last_letter, first_star, second_star, arrow, hint_text) ->
+  constructor: (text_server, current_letter, last_letter, first_star, second_star, arrow, hint_text, congratulations) ->
     this.animating = false
 
     this.game_completed = false
@@ -12,6 +12,8 @@ class this.FrontEnd
     this.second_star = second_star
     this.arrow = arrow
     this.hint_text = hint_text
+
+    this.congratulations = congratulations
 
     # The difference between the demo sequence checker and the text sequence checkers is that the
     # text sequence checkers can only be triggered by valid characters, while the demo sequence checker
@@ -68,7 +70,7 @@ class this.FrontEnd
     this.last_letter.hide()
     this.current_letter.hide()
 
-    $('#congratulations').show()
+    this.congratulations.show()
 
   key_pressed: ( charCode, keyCode ) ->
     this.cancel_hints()
