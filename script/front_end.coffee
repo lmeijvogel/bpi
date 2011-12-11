@@ -1,5 +1,5 @@
 class this.FrontEnd
-  constructor: (text_server, current_letter, last_letter, first_star, arrow, hint_text) ->
+  constructor: (text_server, current_letter, last_letter, first_star, second_star, arrow, hint_text) ->
     this.animating = false
 
     this.game_completed = false
@@ -9,12 +9,14 @@ class this.FrontEnd
     this.current_letter = current_letter
     this.last_letter = last_letter
     this.first_star = first_star
+    this.second_star = second_star
     this.arrow = arrow
     this.hint_text = hint_text
 
     this.text_sequence_checkers = [
       new TextSequenceChecker('doededemo', => this.run_demo() ),
-      new TextSequenceChecker('Hee', => this.display_first_star() )
+      new TextSequenceChecker('Hee', => this.display_first_star() ),
+      new TextSequenceChecker('dit is', => this.display_both_stars() )
     ]
 
   start_game: ->
@@ -107,6 +109,12 @@ class this.FrontEnd
 
   display_first_star: ->
     this.first_star.display()
+
+  display_both_stars: ->
+    this.first_star.display()
+    $.doTimeout(200, =>
+      this.second_star.display()
+    )
 
   set_error: ->
     this.current_letter.set_error()

@@ -47,7 +47,8 @@
     <h1><?php echo $title ?></h1>
 
     <div id="arrow"><img src="gfx/arrow_right.png" /></div>
-    <div id="first_star"><img src="gfx/star.png" /></div>
+    <div id="first_star" class="star"><img src="gfx/star.png" /></div>
+    <div id="second_star" class="star"><img src="gfx/star.png" /></div>
     <div id="letters">
       <div id="last_letter" class="letter" style="display: none"></div>
       <div id="current_letter" class="letter"></div>

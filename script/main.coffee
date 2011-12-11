@@ -22,12 +22,13 @@ class Main
       last_letter = new LastLetter($('#last_letter'), screen_dimensions, this.last_letter_slide_distance)
 
       first_star = new Star($('#first_star'), screen_dimensions, 0, this.star_distance)
+      second_star = new Star($('#second_star'), screen_dimensions, 15, this.star_distance)
 
       arrow = new Arrow($('#arrow'), this.arrow_timeout, this.arrow_movement_distance)
       typed_text = new TypedText($('#typed_text'), text)
       hint_text = new HintText($('#hint_text'), screen_dimensions, this.hint_text_timeout)
 
-      front_end = new FrontEnd( text_server, current_letter, last_letter, first_star, arrow, hint_text )
+      front_end = new FrontEnd( text_server, current_letter, last_letter, first_star, second_star, arrow, hint_text )
       front_end.letter_typed_callback = -> typed_text.next_letter()
 
       if (this.fade_background)
