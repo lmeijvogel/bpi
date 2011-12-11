@@ -19,14 +19,16 @@ html {
     .letter {
       color: black;
 
+      border: 1px solid rgba(0,0,0,0.20);
+      box-shadow: 0 0 4px rgba(0, 0, 0, 0.23);
       width: 50px;
       height: 50px;
+      line-height: 50px;
 
       padding: 5px 5px 5px 5px;
       position: absolute;
 
       text-align: center;
-      vertical-align: middle;
       font-size: 20pt;
 
       &.small {
