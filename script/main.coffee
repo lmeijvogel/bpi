@@ -21,7 +21,8 @@ class Main
       current_letter = new CurrentLetter($('#current_letter'), screen_dimensions)
       last_letter = new LastLetter($('#last_letter'), screen_dimensions, this.last_letter_slide_distance)
 
-      first_star = new Star($('#first_star'), screen_dimensions, this.star_distance)
+      first_star = new Star($('#first_star'), screen_dimensions, 0, this.star_distance)
+
       arrow = new Arrow($('#arrow'), this.arrow_timeout, this.arrow_movement_distance)
       typed_text = new TypedText($('#typed_text'), text)
       hint_text = new HintText($('#hint_text'), screen_dimensions, this.hint_text_timeout)
