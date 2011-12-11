@@ -1,6 +1,9 @@
 jQuery ->
   text = load_text()
 
+  fade_background = false
+  fade_background_timeout = 2000
+
   start_game_timeout = 2000
   last_letter_slide_distance = 300
 
@@ -23,11 +26,23 @@ jQuery ->
     front_end = new FrontEnd( text_server, current_letter, last_letter, arrow, hint_text )
     front_end.letter_typed_callback = -> typed_text.next_letter()
 
-    $.doTimeout( start_game_timeout, ->
-      register_keypresses(text_server, front_end)
+    if (fade_background)
+      $.doTimeout( fade_background_timeout, ->
+        $('#blind').fadeIn('slow')
 
-      front_end.start_game()
-    )
+        $.doTimeout( start_game_timeout, ->
+          register_keypresses(text_server, front_end)
+
+          front_end.start_game()
+        )
+      )
+    else
+      $.doTimeout( start_game_timeout, ->
+        register_keypresses(text_server, front_end)
+
+        front_end.start_game()
+      )
+
 
 load_text = ->
   result = null

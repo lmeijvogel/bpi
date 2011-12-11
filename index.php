@@ -42,6 +42,7 @@
     <link rel="stylesheet" type="text/css" href="css/style.css" />
   </head>
   <body>
+    <div id="blind"></div>
     <div id="notice"></div>
     <h1><?php echo $title ?></h1>
 
