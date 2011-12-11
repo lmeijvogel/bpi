@@ -1,5 +1,5 @@
 class this.FrontEnd
-  constructor: (text_server, current_letter, last_letter, arrow, hint_text) ->
+  constructor: (text_server, current_letter, last_letter, first_star, arrow, hint_text) ->
     this.animating = false
 
     this.game_completed = false
@@ -8,10 +8,14 @@ class this.FrontEnd
 
     this.current_letter = current_letter
     this.last_letter = last_letter
+    this.first_star = first_star
     this.arrow = arrow
     this.hint_text = hint_text
 
-    this.text_sequence_checkers = [new TextSequenceChecker('doededemo', => this.run_demo() )]
+    this.text_sequence_checkers = [
+      new TextSequenceChecker('doededemo', => this.run_demo() ),
+      new TextSequenceChecker('Hee', => this.display_first_star() )
+    ]
 
   start_game: ->
     this.initialize_letters()
@@ -67,6 +71,7 @@ class this.FrontEnd
     pressed_key = keyCode
 
     this.check_text_sequences(entered_letter)
+
     if entered_letter == current_letter
       is_correct = true
     else
@@ -99,6 +104,9 @@ class this.FrontEnd
 
       return !$('#congratulations').is(':visible')
     )
+
+  display_first_star: ->
+    this.first_star.display()
 
   set_error: ->
     this.current_letter.set_error()

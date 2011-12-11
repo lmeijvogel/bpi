@@ -48,6 +48,11 @@ html {
       z-index: 200;
     }
 
+    #first_star {
+      position: absolute;
+      display: none;
+    }
+
     #arrow {
       position: absolute;
       display: none;

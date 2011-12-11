@@ -4,6 +4,8 @@ class Main
     this.fade_background_timeout = 2000
     this.start_game_timeout = 2000
     this.last_letter_slide_distance = 300
+
+    this.star_distance = 80
     this.arrow_timeout = 2000
     this.arrow_movement_distance = 5
     this.hint_text_timeout = 5000
@@ -19,11 +21,12 @@ class Main
       current_letter = new CurrentLetter($('#current_letter'), screen_dimensions)
       last_letter = new LastLetter($('#last_letter'), screen_dimensions, this.last_letter_slide_distance)
 
+      first_star = new Star($('#first_star'), screen_dimensions, this.star_distance)
       arrow = new Arrow($('#arrow'), this.arrow_timeout, this.arrow_movement_distance)
       typed_text = new TypedText($('#typed_text'), text)
       hint_text = new HintText($('#hint_text'), screen_dimensions, this.hint_text_timeout)
 
-      front_end = new FrontEnd( text_server, current_letter, last_letter, arrow, hint_text )
+      front_end = new FrontEnd( text_server, current_letter, last_letter, first_star, arrow, hint_text )
       front_end.letter_typed_callback = -> typed_text.next_letter()
 
       if (this.fade_background)
