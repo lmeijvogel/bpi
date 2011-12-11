@@ -5,7 +5,7 @@ class this.HintText extends CenteredElement
     this.display_timeout = display_timeout
 
   set: ->
-    this.position()
+    this.position_invisible()
     this.set_timeout()
 
   cancel: ->
