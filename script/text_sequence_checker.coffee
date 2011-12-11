@@ -1,4 +1,4 @@
-class this.DemoSequenceChecker
+class this.TextSequenceChecker
   constructor: (text) ->
     this.letters = text.split('')
     this.expected_position = 0

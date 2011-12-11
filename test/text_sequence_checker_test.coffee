@@ -1,5 +1,5 @@
-module "DemoSequenceChecker.letter_pressed",
-  setup: -> this.subject = new DemoSequenceChecker('demo')
+module "TextSequenceChecker.letter_pressed",
+  setup: -> this.subject = new TextSequenceChecker('demo')
 
 test('if no keys are pressed', ->
   same(this.subject.expected_letter(), 'd', "Expected letter is 'd'")
@@ -36,7 +36,7 @@ test('when a wrong letter is pressed during the sequence', ->
 )
 
 test('when the sequence is completed', ->
-  subject = new DemoSequenceChecker("a")
+  subject = new TextSequenceChecker("a")
   subject.letter_pressed('a')
   ok(subject.complete(), "Sequence is complete")
 )
