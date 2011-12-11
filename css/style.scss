@@ -17,7 +17,6 @@ html {
     }
 
     .letter {
-      background-color: white;
       color: black;
 
       width: 50px;
@@ -30,16 +29,18 @@ html {
       vertical-align: middle;
       font-size: 20pt;
 
-      &.error {
-        background-color: red;
-      }
-
       &.small {
         font-size: 10pt;
       }
     }
 
     #current_letter {
+      background-color: white;
+
+      &.error {
+        background-color: red;
+      }
+
       z-index: 100;
       display: none;
     }
