@@ -1,5 +1,5 @@
 class this.FrontEnd
-  constructor: (text_server, current_letter, last_letter, first_star, second_star, arrow, hint_text, congratulations) ->
+  constructor: (text_server, current_letter, last_letter, typed_text, first_star, second_star, arrow, hint_text, congratulations) ->
     this.animating = false
 
     this.game_completed = false
@@ -8,12 +8,18 @@ class this.FrontEnd
 
     this.current_letter = current_letter
     this.last_letter = last_letter
+
+    this.typed_text = typed_text
+
     this.first_star = first_star
     this.second_star = second_star
+
     this.arrow = arrow
     this.hint_text = hint_text
 
     this.congratulations = congratulations
+
+    this.letter_typed_callback = -> typed_text.next_letter()
 
     # The difference between the demo sequence checker and the text sequence checkers is that the
     # text sequence checkers can only be triggered by valid characters, while the demo sequence checker

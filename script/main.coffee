@@ -31,8 +31,7 @@ class Main
 
       congratulations = new Congratulations($('#congratulations'), screen_dimensions, [0, 0])
 
-      front_end = new FrontEnd( text_server, current_letter, last_letter, first_star, second_star, arrow, hint_text, congratulations )
-      front_end.letter_typed_callback = -> typed_text.next_letter()
+      front_end = new FrontEnd( text_server, current_letter, last_letter, typed_text, first_star, second_star, arrow, hint_text, congratulations )
 
       if (this.fade_background)
         $.doTimeout( this.fade_background_timeout, =>
