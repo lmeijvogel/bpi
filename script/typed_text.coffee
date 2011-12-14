@@ -1,8 +1,12 @@
-class this.TypedText
-  constructor: (element, text) ->
+class this.TypedText extends CenteredElement
+  constructor: (element, screen_dimensions, text) ->
+    super(element, screen_dimensions, [0, 200])
+
     this.element = element
     this.text = text
+    this.screen_height = screen_dimensions[1]
 
+    this.position()
     this.current_letter = -1
 
     element_contents = $('<div>')

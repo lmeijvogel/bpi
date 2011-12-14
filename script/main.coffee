@@ -26,7 +26,7 @@ class Main
       second_star = new Star($('#second_star'), screen_dimensions, [15,0], this.star_distance)
 
       arrow = new Arrow($('#arrow'), screen_dimensions, this.arrow_start_position, this.arrow_movement_distance, this.arrow_timeout)
-      typed_text = new TypedText($('#typed_text'), text)
+      typed_text = new TypedText($('#typed_text'), screen_dimensions, text)
       hint_text = new HintText($('#hint_text'), screen_dimensions, this.hint_text_timeout)
 
       congratulations = new Congratulations($('#congratulations'), screen_dimensions, [0, 0])
