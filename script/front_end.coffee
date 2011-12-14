@@ -89,7 +89,7 @@ class this.FrontEnd
       is_correct = true
     else
       switch pressed_key
-        when 27, 116, 192 then return # escape, F5, alt-tab
+        when 27, 91, 116, 192, 9 then return # escape, <Windows>, F5, alt-tab, ctrl-tab
         when 13 then is_correct = current_letter == "\n"
         else
           is_correct = false
