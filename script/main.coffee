@@ -7,7 +7,7 @@ class Main
 
     this.star_distance = 80
     this.arrow_timeout = 10
-    this.arrow_start_position = 50
+    this.arrow_start_position = 60
     this.arrow_movement_distance = 5
     this.hint_text_timeout = 5000
 
