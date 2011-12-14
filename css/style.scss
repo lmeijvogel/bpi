@@ -6,6 +6,7 @@ $gray: rgba(0, 0, 0, 0.23);
 }
 
 html {
+    font-family: Arial, Verdana, Sans;
 
     #blind {
       top: 0;
@@ -25,6 +26,7 @@ html {
 
     .letter {
       @include shadowbox;
+      font-family: Times New Roman, Serif;
       color: black;
 
       width: 50px;
