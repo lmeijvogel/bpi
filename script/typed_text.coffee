@@ -3,12 +3,14 @@ class this.TypedText extends CenteredElement
     super(element, screen_dimensions, [0, 200])
 
     this.element = element
-    this.text = text
     this.screen_height = screen_dimensions[1]
 
     this.position()
     this.current_letter = -1
 
+    this.set_contents(text)
+
+  set_contents: (text) ->
     element_contents = $('<div>')
 
     for char, index in text.split ''
