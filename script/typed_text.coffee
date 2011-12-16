@@ -5,7 +5,6 @@ class this.TypedText extends CenteredElement
     this.element = element
     this.screen_height = screen_dimensions[1]
 
-    this.position()
     this.current_letter = -1
 
     this.set_contents(text)

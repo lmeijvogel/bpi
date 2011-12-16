@@ -37,12 +37,15 @@ class this.FrontEnd
   start_game: ->
     this.initialize_letters()
     this.position_letters()
-
+    this.position_typed_text()
     this.set_hints()
 
   position_letters: ->
     this.current_letter.position()
     this.last_letter.position()
+
+  position_typed_text: ->
+    this.typed_text.position()
 
   initialize_letters: ->
     this.current_letter.set( this.text_server.current_letter() )
