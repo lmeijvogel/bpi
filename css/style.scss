@@ -26,6 +26,10 @@ html {
       z-index: -10;
     }
 
+    h1 {
+      text-align: center;
+    }
+
     .letter {
       @include shadowbox;
       font-family: Times New Roman, Serif;

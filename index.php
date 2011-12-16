@@ -44,7 +44,7 @@
   <body>
     <div id="blind"></div>
     <div id="notice"></div>
-    <h1><?php echo $title ?></h1>
+    <h1><img src="gfx/title.png" /></h1>
 
     <div id="arrow"><img src="gfx/arrow_right.png" /></div>
     <div id="first_star" class="star"><img src="gfx/star.png" /></div>
