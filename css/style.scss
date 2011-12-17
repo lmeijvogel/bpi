@@ -9,6 +9,13 @@ $typed_gray: rgba(0, 0, 0, 0.64);
 
 html {
     font-family: Arial, Verdana, Sans;
+    background-color: #dddddd;
+    height: 100%;
+
+    body {
+      height: 100%;
+      margin: 0;
+    }
 
     #blind {
       top: 0;
@@ -26,8 +33,18 @@ html {
       z-index: -10;
     }
 
+    #canvas {
+      width: 600px;
+      background-color: #ffffff;
+      margin: 0 auto;
+      height: 100%;
+      border-left: 1px solid $typed_gray;
+      border-right: 1px solid $typed_gray;
+    }
+
     h1 {
       text-align: center;
+      margin-top: 0;
     }
 
     .letter {

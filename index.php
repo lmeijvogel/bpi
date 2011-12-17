@@ -43,18 +43,20 @@
   </head>
   <body>
     <div id="blind"></div>
-    <div id="notice"></div>
-    <h1><img src="gfx/title.png" /></h1>
+    <div id="canvas">
+      <div id="notice"></div>
+      <h1><img src="gfx/title.png" /></h1>
 
-    <div id="arrow"><img src="gfx/arrow_right.png" /></div>
-    <div id="first_star" class="star"><img src="gfx/star.png" /></div>
-    <div id="second_star" class="star"><img src="gfx/star.png" /></div>
-    <div id="letters">
-      <div id="last_letter" class="letter" style="display: none"></div>
-      <div id="current_letter" class="letter"></div>
+      <div id="arrow"><img src="gfx/arrow_right.png" /></div>
+      <div id="first_star" class="star"><img src="gfx/star.png" /></div>
+      <div id="second_star" class="star"><img src="gfx/star.png" /></div>
+      <div id="letters">
+        <div id="last_letter" class="letter" style="display: none"></div>
+        <div id="current_letter" class="letter"></div>
+      </div>
+      <div id="typed_text"></div>
+      <div id="hint_text"><?php echo $hint_text ?></div>
+      <div id="congratulations" style="display:none"><?php echo $congratulations ?></div>
     </div>
-    <div id="typed_text"></div>
-    <div id="hint_text"><?php echo $hint_text ?></div>
-    <div id="congratulations" style="display:none"><?php echo $congratulations ?></div>
   </body>
 </html>
