@@ -47,6 +47,10 @@ html {
       margin-top: 0;
     }
 
+    #incoming_logo {
+      position: absolute;
+      opacity: 0;
+    }
     .letter {
       @include shadowbox;
       font-family: Times New Roman, Serif;

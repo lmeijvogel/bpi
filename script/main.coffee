@@ -22,6 +22,7 @@ class Main
       current_letter = new CurrentLetter($('#current_letter'), screen_dimensions)
       last_letter = new LastLetter($('#last_letter'), screen_dimensions, this.last_letter_slide_distance)
 
+      incoming_logo = new IncomingLogo($('#incoming_logo'))
       first_star = new Star($('#first_star'), screen_dimensions, [0,0], this.star_distance)
       second_star = new Star($('#second_star'), screen_dimensions, [15,0], this.star_distance)
 
@@ -31,7 +32,7 @@ class Main
 
       congratulations = new Congratulations($('#congratulations'), screen_dimensions, [0, 0])
 
-      front_end = new FrontEnd( text_server, current_letter, last_letter, typed_text, first_star, second_star, arrow, hint_text, congratulations )
+      front_end = new FrontEnd( text_server, current_letter, last_letter, typed_text, incoming_logo, first_star, second_star, arrow, hint_text, congratulations )
 
       if (this.fade_background)
         $.doTimeout( this.fade_background_timeout, =>
