@@ -30,7 +30,7 @@ class Main
       typed_text = new TypedText($('#typed_text'), screen_dimensions, text)
       hint_text = new HintText($('#hint_text'), screen_dimensions, this.hint_text_timeout)
 
-      congratulations = new Congratulations($('#congratulations'), screen_dimensions, [0, 0])
+      congratulations = new Congratulations($('#congratulations'), screen_dimensions, [0, -40])
 
       front_end = new FrontEnd( text_server, current_letter, last_letter, typed_text, incoming_logo, first_star, second_star, arrow, hint_text, congratulations )
 

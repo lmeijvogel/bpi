@@ -57,7 +57,7 @@
       </div>
       <div id="typed_text"></div>
       <div id="hint_text"><?php echo $hint_text ?></div>
-      <div id="congratulations" style="display:none"><?php echo $congratulations ?></div>
+      <div id="congratulations" style="display:none"><img src="gfx/congratulations.png" /></div>
     </div>
   </body>
 </html>
