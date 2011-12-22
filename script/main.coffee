@@ -36,11 +36,13 @@ class Main
 
       if (this.fade_background)
         $.doTimeout( this.fade_background_timeout, =>
+          $('#canvas').fadeIn('slow')
           $('#blind').fadeIn('slow')
 
           this.start_game(text_server, front_end)
         )
       else
+        $('#canvas').show()
         this.start_game(text_server, front_end)
 
   load_text: ->

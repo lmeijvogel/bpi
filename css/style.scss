@@ -36,6 +36,7 @@ html {
     #canvas {
       width: 800px;
       background-color: #ffffff;
+      display: none;
       margin: 0 auto;
       height: 100%;
       border-left: 1px solid $typed_gray;
