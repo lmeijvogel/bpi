@@ -1,0 +1,12 @@
+{
+    "fade_background": false,
+    "fade_background_timeout": 2000,
+    "start_game_timeout": 500,
+    "last_letter_slide_distance": 300,
+
+    "star_distance": 80,
+    "arrow_timeout": 10,
+    "arrow_start_position": 60,
+    "arrow_movement_distance": 5,
+    "hint_text_timeout": 1000
+}
