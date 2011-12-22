@@ -29,7 +29,7 @@ class Main
 
       congratulations = new Congratulations($('#congratulations'), screen_dimensions, [0, -40])
 
-      front_end = new FrontEnd( text_server, current_letter, last_letter, typed_text, incoming_logo, first_star, second_star, arrow, hint_text, congratulations )
+      front_end = new FrontEnd( text_server, current_letter, last_letter, typed_text, incoming_logo, first_star, second_star, arrow, hint_text, congratulations, this.settings.triggers )
 
       if (this.settings.fade_background)
         $.doTimeout( this.settings.fade_background_timeout, =>

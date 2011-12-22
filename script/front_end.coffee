@@ -1,5 +1,5 @@
 class this.FrontEnd
-  constructor: (text_server, current_letter, last_letter, typed_text, incoming_logo, first_star, second_star, arrow, hint_text, congratulations) ->
+  constructor: (text_server, current_letter, last_letter, typed_text, incoming_logo, first_star, second_star, arrow, hint_text, congratulations, triggers) ->
     this.animating = false
 
     this.game_completed = false
@@ -30,11 +30,12 @@ class this.FrontEnd
     # in key_pressed(), otherwise they would not be triggered in demo mode.
     this.demo_sequence_checker = new TextSequenceChecker('doededemo', => this.run_demo() )
 
-    this.text_sequence_checkers = [
-      new TextSequenceChecker('Hee', => this.display_first_star() ),
-      new TextSequenceChecker('dit is', => this.display_both_stars() )
-      new TextSequenceChecker('con', => this.display_incoming_logo() )
-    ]
+    if (triggers)
+      this.text_sequence_checkers = [
+        new TextSequenceChecker(triggers.first_star, => this.display_first_star() ),
+        new TextSequenceChecker(triggers.second_star, => this.display_both_stars() )
+        new TextSequenceChecker(triggers.logo, => this.display_incoming_logo() )
+      ]
 
   start_game: ->
     this.initialize_letters()

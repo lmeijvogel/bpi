@@ -8,5 +8,12 @@
     "arrow_timeout": 10,
     "arrow_start_position": 60,
     "arrow_movement_distance": 5,
-    "hint_text_timeout": 1000
+    "hint_text_timeout": 1000,
+
+    "triggers":
+    {
+      "first_star": "Hee",
+      "second_star": "dit is",
+      "logo": "con"
+    }
 }
