@@ -56,6 +56,7 @@
       <div id="typed_text"></div>
       <div id="hint_text"><?php echo $hint_text ?></div>
       <div id="congratulations" style="display:none"><img src="gfx/congratulations.png" /></div>
+      <div id="timer">Je tijd was: <span class="time"></span> :)</div>
     </div>
   </body>
 </html>
