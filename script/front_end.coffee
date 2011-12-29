@@ -127,7 +127,7 @@ class this.FrontEnd
       checker.letter_pressed(entered_letter)
 
   run_demo: ->
-    $.doTimeout(200, =>
+    $.doTimeout(100, =>
       this.letter_typed( this.text_server )
 
       return !$('#congratulations').is(':visible')
