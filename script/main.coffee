@@ -29,7 +29,7 @@ class Main
 
       congratulations = new Congratulations($('#congratulations'), screen_dimensions, [0, -40])
 
-      timer = new Timer($('#timer'), screen_dimensions)
+      timer = new Timer($('#timer'), text, screen_dimensions)
 
       front_end = new FrontEnd( text_server, current_letter, last_letter, typed_text, incoming_logo, first_star, second_star, arrow, hint_text, congratulations, timer, this.settings.triggers )
 
